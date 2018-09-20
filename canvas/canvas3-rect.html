@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas3-rect</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="300">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			gradient=context.createLinearGradient(0,0,canvas.width,0),
+			gradient1=context.createRadialGradient(0,0,50,100,100,50);
+		gradient.addColorStop(0,'blue');
+		gradient.addColorStop(0.25,'white');
+		gradient.addColorStop(0.5,'rgb(100,50,90)');
+		gradient.addColorStop(0.75,'rgb(75,50,34)');
+		gradient.addColorStop(1,'black');
+		gradient1.addColorStop(0,'blue');
+		gradient1.addColorStop(0.25,'white');
+		gradient1.addColorStop(0.5,'rgb(100,50,90)');
+		gradient1.addColorStop(0.75,'rgb(75,50,34)');
+		gradient1.addColorStop(1,'black');
+		context.lineJoin='round';
+		context.lineWidth=10;
+		context.font='24px Arial';
+		context.fillText('Click anywhere to erase',300,40);
+		context.strokeStyle='rgba(51,51,51,0.5)';
+		context.fillStyle=gradient1;
+		context.strokeRect(50,80,100,100);
+		context.fillRect(0,0,canvas.width,canvas.height);
+		canvas.addEventListener('mousedown',function(e){
+			context.clearRect(0,0,canvas.width,canvas.height);
+		});
+	</script>
+</body>
+</html>

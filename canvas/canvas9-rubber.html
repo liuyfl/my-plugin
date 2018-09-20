@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas9-rubber</title>
+</head>
+<body>
+<div id="controle">
+stroke color:<select id="strokestyle">
+	<option value="red">red</option>
+	<option value="green">green</option>
+	<option value="blue">blue</option>
+	<option value="orange">orange</option>
+</select>
+guidewires:<input type="button" value="erase all" id="erasebtn">
+</div>
+	<canvas id="canvas" height="300" width="600">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			strokecolor=document.getElementById('strokestyle'),
+			drawingimage,
+			mousedown={x:0,y:0},
+			rubberrect={width:0,height:0},
+			drawing=false;
+		canvas.onmousedown=function(e){
+			var loc=windowtocanvas(e.clientX,e.clientY);
+			e.preventDefault();
+			savedrawing();
+			mousedown.x=loc.x;
+			mousedown.y=loc.y;
+			drawing=true;
+		}
+		canvas.onmousemove=function(e){
+			var loc;
+			if(drawing){
+				e.preventDefault();
+				loc=windowtocanvas(e.clientX,e.clientY);
+				restoredrawing();
+				updaterubber(loc);
+			}
+			
+		}
+		canvas.onmouseup=function(e){
+			var loc=windowtocanvas(e.clientX,e.clientY);
+			if(drawing){
+				restoredrawing();
+				updaterubber(loc);
+				drawing=false;
+			}
+		}
+		function erasecirclemove(loc){
+			context.save();
+			var erasewidth=10;
+			context.beginPath();
+			context.arc(loc.x,loc.y,erasewidth/2,0,Math.PI*2,false);
+			// context.stroke();
+			// context.save();
+			// context.beginPath();
+			// context.arc(loc.x,loc.y,erasewidth/2,0,Math.PI*2,false);
+			// context.stroke();
+			// context.restore();
+			context.clip();
+			context.clearRect(0,0,canvas.width,canvas.height);
+			drawgrid('lightgray',10,10);
+			context.stroke();
+			context.restore();
+
+		}
+		function windowtocanvas(x,y){
+			var box=canvas.getBoundingClientRect();
+			return{x:x-box.left,y:y-box.top};
+		}
+		function savedrawing(){
+			drawingimage=context.getImageData(0,0,canvas.width,canvas.height);
+		}
+		function restoredrawing(){
+			context.putImageData(drawingimage,0,0);
+		}
+		function updaterubber(loc){
+			// updaterubberrect(loc);
+			drawrubber(loc);
+		}
+		// function updaterubberrect(loc){
+		// 	rubberrect.width=Math.abs(loc.x-mousedown.x);
+		// 	rubberrect.height=Math.abs(loc.y-mousedown.y);
+		// 	if(loc.x>mousedown.x)
+		// 		rubberrect.left=mousedown.x;
+		// 	else
+		// 		rubberrect.left=loc.x;
+		// 	if(loc.y>mousedown.y)
+		// 		rubberrect.top=mousedown.y;
+		// 	else
+		// 		rubberrect.top=loc.y;
+		// }
+		function drawrubber(loc){
+			context.beginPath();
+			context.moveTo(mousedown.x,mousedown.y);
+			context.lineTo(loc.x,loc.y);
+			context.stroke();
+		}
+		document.getElementById('erasebtn').onclick=function(e){
+			context.clearRect(0,0,canvas.width,canvas.height);
+			drawgrid('lightgray',10,10);
+			savedrawing();
+		}
+		function drawgrid(color,stepx,stepy){
+			context.strokeStyle=color;
+			context.lineWidth=0.5;
+			for(var i=stepx+0.5;i<canvas.width;i+=stepx)
+			{
+				context.beginPath();
+				context.moveTo(i,0);
+				context.lineTo(i,canvas.height);
+				context.stroke();
+			}
+			for(var i=stepy+0.5;i<canvas.height;i+=stepy)
+			{
+				context.beginPath();
+				context.moveTo(0,i);
+				context.lineTo(canvas.width,i);
+				context.stroke();
+			}
+		}
+		document.getElementById('strokestyle').onchange=function(e){
+			context.strokeStyle=strokecolor.value;
+		}
+		context.strokeStyle=strokecolor.value;
+		drawgrid('lightgray',10,10);
+	</script>
+</body>
+</html>

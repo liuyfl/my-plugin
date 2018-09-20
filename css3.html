@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<style type="text/css">
+	.phcolor{ border:2px solid red;}
+	</style>
+</head>
+<body>
+	<input type="text" id="uname" name="uname" placeholder="请输入用户名"/>
+<script type="text/javascript">
+	$(function(){
+		function AddEvents(){
+			$('#uname').focus(function(){
+				$(this).addClass('phcolor');
+			}).blur(function(){
+				$(this).removeClass('phcolor');
+			})
+		}
+		AddEvents();
+	});
+</script>
+</body>
+</html>

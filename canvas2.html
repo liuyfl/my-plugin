@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>canvas人物</title>
+</head>
+<body>
+	<div style="width:800px; height:800px; margin:0 auto;">
+	<canvas id="cvs" height="600" width="600">你的浏览器不支持canvas</canvas>
+</div>
+	<script type="text/javascript">
+	var cvs=document.getElementById("cvs");
+	var ctx=cvs.getContext("2d");
+	ctx.lineWidth=2;
+	ctx.fillStyle="#8aeb2e";
+	ctx.moveTo(50,50);
+	ctx.lineTo(76,150);
+	ctx.moveTo(50,50);
+	ctx.quadraticCurveTo(70,40,130,108);
+	ctx.moveTo(50,50);
+	ctx.quadraticCurveTo(50,40,100,138);
+	ctx.quadraticCurveTo(90,130,90,146);
+	ctx.quadraticCurveTo(76,135,85,148);
+	ctx.quadraticCurveTo(45,185,32,220);
+	ctx.quadraticCurveTo(65,225,40,235);
+	ctx.quadraticCurveTo(70,240,67,246);
+	ctx.bezierCurveTo(67,370,320,370,320,246);
+	ctx.quadraticCurveTo(340,240,350,243);
+	ctx.quadraticCurveTo(315,230,363,230);
+
+	ctx.moveTo(350,50);
+	// ctx.lineTo(304,138);
+	ctx.quadraticCurveTo(350,40,304,138);
+	ctx.moveTo(350,50);
+	ctx.quadraticCurveTo(330,40,258,94);
+	ctx.moveTo(350,50);
+	ctx.lineTo(335,108);
+	ctx.quadraticCurveTo(316,110,332,120);
+	ctx.lineTo(325,155);
+	ctx.quadraticCurveTo(320,140,315,148);
+	ctx.quadraticCurveTo(320,130,310,140);
+	ctx.quadraticCurveTo(315,130,304,138);
+	ctx.moveTo(323,154);
+	ctx.quadraticCurveTo(335,150,363,230);
+
+	ctx.moveTo(258,94);
+	ctx.quadraticCurveTo(214,50,119,118);
+	ctx.bezierCurveTo(90,160,324,150,253,90);
+	ctx.moveTo(127,111);
+	ctx.bezierCurveTo(95,150,304,130,250,88);
+
+	ctx.moveTo(250,88);
+	ctx.quadraticCurveTo(230,102,230,107);
+	ctx.quadraticCurveTo(170,110,175,115);
+	ctx.quadraticCurveTo(198,70,200,80);
+	ctx.stroke();
+	// ctx.fillStyle="#eeeeff";
+	// ctx.fillRect(0,0,300,400);
+	// for(var i=0;i<5;i++)
+	// {
+	// 	ctx.beginPath();
+	// 	ctx.arc(i*20,i*20,i*10,0,Math.PI*2,true);
+	// 	ctx.fillStyle="rgba(255,100,100,0.3)";
+	// 	ctx.fill();
+	// }
+	
+	</script>
+</body>
+</html>				

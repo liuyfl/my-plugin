@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas14-text_fill&stroke</title>
+	<style type="text/css">
+	#canvas{border:1px solid #eee;}
+	</style>
+</head>
+<body>
+	<input type="checkbox" id="stroke" checked>stroke
+	<input type="checkbox" id="fill" checked>fill
+	<input type="checkbox" id="shadow" checked>shadow
+	<canvas id="canvas" width="600" height="400">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			stroke=document.getElementById('stroke'),
+			fill=document.getElementById('fill'),
+			shadow=document.getElementById('shadow');
+		function draw(){
+			context.clearRect(0,0,canvas.width,canvas.height);
+			if(shadow.checked)
+			{
+				context.shadowColor='rgba(0,0,0,0.5)';
+				context.shadowOffsetX=5;
+				context.shadowOffsetY=5;
+				context.shadowBlur=10;
+			}
+			else
+			{
+				context.shadowColor=undefined;
+				context.shadowOffsetX=0;
+				context.shadowOffsetY=0;
+				context.shadowBlur=0;
+			}
+			if(fill.checked)
+			{
+				
+				context.fillText('canvas',50,150);
+			}
+			if(stroke.checked)
+			{
+				
+				context.strokeText('canvas',50,150);
+			}
+		}
+		fill.onchange=function(e){
+			draw();
+		}
+		stroke.onchange=function(e){
+			draw();
+		}
+		shadow.onchange=function(e){
+			draw();
+		}
+		context.font='60px Arial';
+		context.fillStyle='blue';
+		context.lineWidth=1;
+		context.strokeStyle='rgba(51,51,51,1)';
+		draw();
+		// 渐变色填充文本
+		var gradient=context.createLinearGradient(0,0,canvas.width,canvas.height);
+		gradient.addColorStop(0,'blue');
+		gradient.addColorStop(0.5,'white');
+		gradient.addColorStop(1,'yellow');
+		context.fillStyle=gradient;
+		draw();
+		// pattern填充文本
+		var image=new Image();
+		image.src='images/money.png';
+		image.onload=function(){
+			var pattern=context.createPattern(image,'repeat');
+			context.fillStyle=pattern;
+			draw();
+		}
+		
+	</script>
+</body>
+</html>

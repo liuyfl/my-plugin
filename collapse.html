@@ -1,0 +1,20 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>磨途歌-A标签测试1</title>
+</head>
+<body>
+    <a href="http://blog.mo2g.com">磨途歌</a>
+</body>
+</html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+jQuery(function($) {
+    //给所有A标签绑定点击触发事件
+    $('a').click(function() {
+        alert(1);
+    });
+    //触发所有A标签的点击事件
+    $('a').click();
+});
+</script>

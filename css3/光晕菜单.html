@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>光晕菜单效果</title>
+	<style type="text/css">
+	nav{
+		width:500px;
+		height:300px;
+		background: #eee;
+		border:1px solid #bfbfbf;
+		border-radius: 10px;
+		text-align: center;
+	}
+	ul{
+		padding: 0px;
+	}
+	li{
+		list-style:none;
+		display: inline;
+		padding:5px 10px;
+		position: relative;
+	}
+	li a{
+		text-decoration: none;
+		font-size: 20px;
+		color: #10adf2;
+		font-family: Microsoft yahei;
+		
+	}
+	li a:after{
+		content:'';
+		width:0;
+		height:3px;
+		background: #10adf2;
+		border-radius: 80%;
+		-webkit-border-radius:80%;
+		-moz-border-radius:80%;
+		-o-border-radius:80%;
+		-webkit-transition:all 1s;
+		-moz-transition:all 1s;
+		-o-transition:all 1s;
+		transition:all 1s;
+		position: absolute;
+		left:0px;
+		bottom: 0px;
+		margin-left: 50%;/*s设置从中间开始出现*/
+	}
+	li a:hover:after{
+		width:100%;
+		-webkit-box-shadow:0 0 10px #10adf2;
+		-moz-box-shadow:0 0 10px #10adf2;
+		-o-box-shadow:0 0 10px #10adf2;
+		box-shadow: 0 0 10px #10adf2;
+		margin-left: -0%;
+	}
+	</style>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="#">菜单一</a></li>
+				<li><a href="#">菜单二</a></li>
+				<li><a href="#">菜单三</a></li>
+			</ul>
+		</nav>
+	</header>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas12-clip&rubber</title>
+	<style type="text/css">
+	#canvas{
+		border:1px solid #eee;
+	}
+	</style>
+</head>
+<body>
+	<div>
+	draw<input type="radio" name="drawerase" id="draw" checked>
+	erase<input type="radio" name="drawerase" id="erase">
+	</div>
+	<canvas id="canvas" height="300" width="500">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			draw=document.getElementById('draw'),
+			erase=document.getElementById('erase'),
+			mousedown={},
+			drawing=false,
+			ewidth=10,
+			drawimage;
+		function drawgrid(color,stepx,stepy){
+			context.save();
+			context.strokeStyle=color;
+			context.lineWidth=0.5;
+			context.fillStyle='#fff';
+			context.fillRect(0,0,canvas.width,canvas.height);
+			for(var i=stepx+0.5;i<canvas.width;i+=stepx)
+			{
+				context.beginPath();
+				context.moveTo(i,0);
+				context.lineTo(i,canvas.height);
+				context.stroke();
+			}
+			for(var i=stepy+0.5;i<canvas.height;i+=stepy){
+				context.beginPath();
+				context.moveTo(0,i);
+				context.lineTo(canvas.width,i);
+				context.stroke();
+			}
+			context.restore();
+		}
+		function windowtocanvas(x,y){
+			var box=canvas.getBoundingClientRect();
+			return {x:x-box.left,y:y-box.top};
+		}
+		canvas.onmousedown=function(e){
+			var loc=windowtocanvas(e.clientX,e.clientY);
+			e.preventDefault();
+			if(draw.checked)
+			{
+				saveImage();
+			}
+			mousedown.x=loc.x;
+			mousedown.y=loc.y;
+			drawing=true;
+		}
+		canvas.onmousemove=function(e){
+			var loc=windowtocanvas(e.clientX,e.clientY);
+			if(drawing){
+				e.preventDefault();
+				if(erase.checked)
+				{
+					eraselast();
+					drawerase(loc);
+				}
+				mousedown.x=loc.x;
+				mousedown.y=loc.y;
+			}
+		}
+		canvas.onmouseup=function(e){
+			var loc=windowtocanvas(e.clientX,e.clientY);
+			if(erase.checked)
+			{
+				eraselast();
+			}
+			drawing=false;
+		}
+		function saveImage(){
+			drawimage=context.getImageData(0,0,canvas.width,canvas.height);
+		}
+		function eraselast(){
+			context.save();
+			context.beginPath();
+			context.arc(mousedown.x,mousedown.y,ewidth+1,0,Math.PI*2,false);
+			context.clip();
+			drawgrid('#eee',10,10);
+			context.restore();
+		}
+		function drawerase(loc){
+			context.save();
+			context.beginPath();
+			context.arc(loc.x,loc.y,ewidth,0,Math.PI*2,false);
+			context.clip();
+			context.stroke();
+			context.restore();
+		}
+		drawgrid('#eee',10,10);
+		context.beginPath();
+		context.fillStyle='#f00';
+		context.arc(100,100,50,0,Math.PI*2,false);
+		context.fill();
+	</script>
+</body>
+</html>

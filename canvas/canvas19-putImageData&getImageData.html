@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas19-putImageData&getImageData</title>
+	<style type="text/css">
+	#canvas{
+		border:1px solid #eee;
+	}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="400">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			image=new Image(),
+			original;
+		image.src='images/countrypath.jpg';
+		image.onload=function(){
+			context.drawImage(image,0,0,canvas.width,canvas.height);
+			original=context.getImageData(0,0,canvas.width,canvas.height);
+		}
+	</script>
+</body>
+</html>

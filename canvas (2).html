@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas实例</title>
+</head>
+<body>
+	<canvas id="cvs" width="1200px" height="800px" >你的浏览器不支持canvas</canvas>
+	<script type="text/javascript">
+		var cvs=document.getElementById('cvs');
+		var cxt=cvs.getContext('2d');
+		// 图片加载
+		// var image=new Image();
+		// image.onload= function()
+		// {
+		// 	var pattern=cxt.createPattern(image,'no-repeat');
+		// 	cxt.fillStyle=pattern;
+		// 	cxt.arc(50,50,10,0,Math.PI*2);
+		// 	cxt.fill();
+		// }
+		// image.src='images/10.jpg';
+		// end
+		function DrawCircle(cxt,x,y)
+		{
+			cxt.beginPath();
+			cxt.fillStyle='#fbb';
+			cxt.arc(x,y,5,0,Math.PI*2);
+			cxt.stroke();
+			cxt.closePath();
+		}
+		var array=new Array();
+		window.onload=function(){
+			var x,y=0,y1;
+			
+			for(var i=0;i<10;i++)
+				array[i]=new Array();
+			for(var i=0;i<5;i++)
+			{
+				x=0;
+				y=Math.floor(Math.random()*20+100)+y;
+				
+				for(var j=0;j<10;j++)
+				{
+					x=Math.floor(Math.random()*30+90)+x;
+					y1=y+Math.floor(Math.random()*60+10);
+					DrawCircle(cxt,x,y1);
+					array[i][j]=[x,y1];
+				}
+			}
+			// cxt.beginPath();
+			for(var i=0;i<5;i++)
+			{
+				
+				for(var j=0;j<10;j++)
+				{
+					cxt.beginPath();
+					if(j!=0&&i!=4)
+					{
+						cxt.moveTo(array[i][j][0],array[i][j][1]+5);
+						cxt.lineTo(array[i+1][j-1][0],array[i+1][j-1][1]-5);
+					}
+					
+					if(i!=4)
+					{
+						cxt.moveTo(array[i][j][0],array[i][j][1]+5);
+						cxt.lineTo(array[i+1][j][0],array[i+1][j][1]-5);
+					}
+					
+
+					if(j!=9)
+					{
+						cxt.moveTo(array[i][j][0]+5,array[i][j][1]);
+						cxt.lineTo(array[i][j+1][0]-5,array[i][j+1][1]);
+						if(i!=4)
+						{
+							cxt.moveTo(array[i][j][0],array[i][j][1]+5);
+							cxt.lineTo(array[i+1][j+1][0],array[i+1][j+1][1]-5);
+						}
+						
+					}
+					cxt.stroke();
+					cxt.closePath();
+				}
+				
+			}
+			
+		}
+		// function cvszoomout(event){
+		// 	event=event||window.event;
+		// 	x=event.clientX;
+		// 	y=event.clientY;
+		// 	cxt.save();
+		// 	for(var i=0;i<5;i++)
+		// 	{
+		// 		for(var j=0;j<10;j++)
+		// 		{
+		// 			if((x>=array[i][j][0]-5)&&(x<=array[i][j][0]+5)&&(y>=array[i][j][1]-5)&&(y<=array[i][j][1]+5))
+		// 			{
+		// 				cxt.beginPath();
+		// 				cxt.arc(array[i][j][0],array[i][j][1],20,0,Math.PI*2);
+		// 				cxt.stroke();
+		// 				cxt.closePath();
+		// 			}
+		// 		}
+		// 	}
+		// }
+		// function cvszoonin(){
+		// 	cxt.restore();
+		// }
+	</script>
+</body>
+</html>

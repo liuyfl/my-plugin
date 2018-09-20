@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas星空</title>
+    <script type="text/javascript">
+    var count=100;
+    var st=[];
+    var ctx;
+    function rndf(n){
+        return Math.floor(Math.random()*n);
+    }
+    function rndc(n){
+        return Math.ceil(Math.random()*n);
+    }
+    function star(){
+        this.reset=function(){
+            this.x=0;
+            this.y=rndf(500);
+            this.size=rndc(3);
+            this.vx=1*this.size/3;
+            this.vy=0;
+            this.color="rgba("+rndf(255)+","+rndf(255)+","+rndf(255)+",0.5)";
+        };
+        this.reset();
+        this.x=rndf(800);
+        
+    }
+    function setStar(){
+        ctx.globalCompositeOperation="source-over";
+        ctx.fillStyle="rgba(0,0,0,0.3)";
+        ctx.fillRect(0,0,800,500);
+        ctx.globalCompositeOperation="lighter";
+        var sr;
+        for(var i=0;i<count;++i)
+        {
+            sr=st[i];
+            ctx.beginPath();
+            var rad=ctx.createRadialGradient(sr.x,sr.y,0,sr.x,sr.y,sr.size);
+            rad.addColorStop(0,"white");
+            
+            rad.addColorStop(0.4,sr.color);
+            rad.addColorStop(1,"black");
+            ctx.fillStyle=rad;
+            ctx.arc(sr.x,sr.y,sr.size,Math.PI*2,false);
+            ctx.fill();
+            sr.x+=sr.vx;
+            sr.y+=sr.vy;
+            if(sr.x<=0||sr.x>=800||sr.y>=500||sr.y<=0){
+                sr.reset();
+            }
+        }
+    }
+    function init(){
+        var cvs = document.getElementById("cvs");
+        ctx=cvs.getContext("2d");
+        var i;
+        for(i=0;i<count;++i)
+        {
+            var s=new star();
+            st.push(s);
+        }
+        setInterval(setStar,33);
+    }
+    </script>
+</head>
+<body onLoad="init()">
+    <canvas id="cvs" height="500"  width="800" style="background:black;"></canvas>
+</body>
+</html>

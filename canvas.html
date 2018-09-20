@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas画图</title>
+</head>
+<body>
+	<canvas id="cvs" width="800" height="600">你的浏览器不支持canvas</canvas>
+	<script type="text/javascript">
+	var cvs=document.getElementById("cvs");
+	var ctx=cvs.getContext("2d");
+	ctx.moveTo(10,10);
+	ctx.lineTo(10,100);
+	ctx.lineTo(100,100);
+	ctx.lineTo(100,10);
+	ctx.lineTo(10,10);
+	// ctx.moveTo(100.5,100.5);
+	// ctx.lineTo(100.5,200.5);
+	// ctx.lineTo(200.5,200.5);
+	// ctx.lineTo(200.5,100.5);
+	// ctx.lineTo(100.5,100.5);
+	ctx.closePath();
+	ctx.lineWidth=1;
+	// ctx.lineJoin="round";
+	// ctx.lineCap="square";
+	ctx.strokeStyle="#aaaaaa";
+	ctx.stroke();
+	ctx.fillStyle="#bbbbbb";
+	ctx.fillRect(150,150,100,100);
+
+	var gra=ctx.createLinearGradient(100,100,100,200);
+	gra.addColorStop(0,"#fff");
+	gra.addColorStop(0.5,"#f0f");
+	gra.addColorStop(1,"#333");
+	ctx.fillStyle=gra;
+	ctx.fillRect(200,190,100,100);
+
+	var ra=ctx.createRadialGradient(150,150,40,150,150,50);
+	ra.addColorStop(0,"#fff");
+	ra.addColorStop(0.4,"#ff0");
+	ra.addColorStop(0.8,"#555");
+	ra.addColorStop(1,"#f00");
+	ctx.fillStyle=ra;
+	ctx.fillRect(100,100,300,300);
+
+	ctx.fillStyle="#666";
+	ctx.save();
+
+	ctx.fillStyle = "rgba(255,0,0,1)";
+//储存一次
+ctx.save();
+ctx.beginPath();
+ctx.rect(300,300,110,110);
+ctx.fill();
+//新设置一下画笔并作画
+ctx.fillStyle = '#0f0';
+ctx.fillRect(300,400,111,111);
+//还原到上次储存的地方
+ctx.restore();
+ctx.fillRect(300,500,111,111);
+ctx.fill();
+
+ctx.arc(400,100,30,0,2*Math.PI);
+ctx.arc(400,100,40,0,2*Math.PI);
+ctx.arc(400,100,50,0,2*Math.PI);
+ctx.arc(400,100,60,0,2*Math.PI);
+ctx.stroke();
+ctx.translate(200,100);
+ctx.arc(0,0,30,0,2*Math.PI);
+ctx.arc(0,0,40,0,2*Math.PI);
+ctx.arc(0,0,50,0,2*Math.PI);
+ctx.arc(0,0,60,0,2*Math.PI);
+ctx.stroke();
+
+
+var w = 60,h = 80,b = w/h;
+ctx.beginPath();
+ctx.translate(500,100);
+ctx.scale(1,b);
+ctx.arc(0,0,w/2,0,Math.PI*2);
+ctx.stroke();
+	</script>
+</body>
+</html>

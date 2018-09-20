@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas16-textAlign&textBaseline</title>
+</head>
+<body>
+	<canvas id="canvas" height="400" width="800">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			align_column=['start','center','end'],
+			baseline_column=['top','middle','bottom','alphabetic','ideographic','hanging'],x,y;
+		function drawgrid(color,stepx,stepy){
+			context.strokeStyle=color;
+			context.lineWidth=0.5;
+			for(var i=stepx+0.5;i<canvas.width;i+=stepx)
+			{
+				context.beginPath();
+				context.moveTo(i,0);
+				context.lineTo(i,canvas.height);
+				context.stroke();
+			}
+			for(var i=stepx+0.5;i<canvas.height;i+=stepx)
+			{
+				context.beginPath();
+				context.moveTo(0,i);
+				context.lineTo(0,canvas.width);
+				context.stroke();
+			}
+		}
+		function drawtextmarker(color,x,y){
+			context.fillStyle=color;
+			context.fillRect(x,y,7,7);
+			context.strokeRect(x,y,7,7);
+		}
+		function drawtext(text,textalign,textbaseline,x,y){
+			if(textalign)
+				context.textAlign=textalign;
+			if(textbaseline)
+				context.textbaseline=textbaseline;
+			context.fillStyle='cornflowerblue';
+			context.fillText(text,x,y);
+		}
+		function drawtextline(x,y){
+			context.strokeStyle='gray';
+			context.beginPath();
+			context.moveTo(x,y);
+			context.lineTo(x+500,y);
+			context.stroke();
+		}
+		context.font="30px Arial";
+		drawgrid('lightgray',10,10);
+		for(var i=0;i<align_column.length;i++)
+		{
+			for(var j=0;j<baseline_column.length;j++)
+			{
+				x=20+i*380;
+				y=20+j*50;
+				drawtext(align_column[i]+'/'+baseline_column[j],align_column[i],baseline_column[j],x,y);
+				drawtextmarker('blue',x,y);
+				drawtextline(x,y);
+			}
+		}
+	</script>
+</body>
+</html>

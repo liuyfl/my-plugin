@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>海南生活圈努力加载中......</title>
+</head>
+<body  onLoad="location.href = url;" style='overflow:hidden;overflow-y:hidden'>
+<script language="JavaScript">
+var url = 'http://hn00000.com';
+</script>
+<div align=center style=" position:absolute; width:800px; height:150px; top:50%; margin-top:-75px; left:50%; margin-left:-400px;">
+<font class=fontbig>海南生活圈努力加载中......</font>
+
+<style>.proccess{border:1px solid #000000;width:8px;height:8px;background:#000000;margin:3px;}</style>
+<div align="center" style="margin-top:30px;">
+<form method=post name=proccess>
+<script language=javascript>
+for(i=0;i<30;i++)document.write("<input class='proccess'>")
+</script>
+</form>
+</div>
+<div align="center">
+<script language=JavaScript>var p=0,j=0;
+var c=new Array("DeepPink","Black")
+setInterval('proccess();',100)
+function proccess(){
+document.forms.proccess.elements[p].style.background=c[j];
+p+=1;
+if(p==30){p=0;j=1-j;}}
+--></script>
+</div>
+</div>
+<div align="center">
+<script>
+<!--
+if (document.layers)
+document.write('<Layer src="' + url + ' " VISIBILITY="hide"> </Layer>');
+else if (document.all || document.getElementById)
+document.write('<iframe src="' + url + '" style="visibility: hidden;"></iframe>');
+else location.href = url;
+//-->
+</script>
+</div>
+</body>
+</html>

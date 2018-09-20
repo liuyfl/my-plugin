@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas4-pattern</title>
+	<style type="text/css">
+	#radiodiv{
+		padding:10px;
+	}
+	</style>
+</head>
+<body>
+<div id="radiodiv">
+	<input type="radio" id="repeatradio" name="pattermradio" checked>repeat
+	<input type="radio" id="repeatxradio" name="patternradio">repeat-x
+	<input type="radio" id="repeatyradio" name="patternradio">repeat-y
+	<input type="radio" id="norepeatradio" name="patternradio">no-repeat
+	<img src="images/money.png">
+</div>
+	<canvas id="canvas" width="600" height="3000">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			repeatradio=document.getElementById('repeatradio'),
+			repeatxradio=document.getElementById('repeatxradio'),
+			repeatyradio=document.getElementById('repeatyradio'),
+			norepeatradio=document.getElementById('norepeatradio'),
+			image=new Image();
+		repeatradio.onclick=function(e){
+			fillcanvaspattern('repeat');
+		}
+		repeatxradio.onclick=function(e){
+			fillcanvaspattern('repeat-x');
+		}
+		repeatyradio.onclick=function(e){
+			fillcanvaspattern('repeat-y');
+		}
+		norepeatradio.onclick=function(e){
+			fillcanvaspattern('no-repeat');
+		}
+		function fillcanvaspattern(rpattern){
+			var pattern=context.createPattern(image,rpattern);
+			context.clearRect(0,0,canvas.width,canvas.height);
+			context.fillStyle=pattern;
+			context.fillRect(0,0,canvas.width,canvas.height);
+			context.fill();
+		}
+		image.src='images/money.png';
+		image.onload=function(e){
+			fillcanvaspattern('repeat');
+		}
+	</script>
+</body>
+</html>

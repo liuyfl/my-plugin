@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas11-globalcompositeoperation</title>
+</head>
+<body>
+<select id="compositeoperation">
+	<option value="source-over">source-over</option>
+	<option value="source-atop">source-atop</option>
+	<option value="source-in">source-in</option>
+	<option value="source-out">source-out</option>
+	<option value="destination-over">destination-over</option>
+	<option value="destination-atop">destination-atop</option>
+	<option value="destination-in">destination-in</option>
+	<option value="destination-out">destination-out</option>
+	<option value="lighter">lighter</option>
+	<option value="copy">copy</option>
+	<option value="xor">xor</option>
+</select>
+	<canvas id="canvas" width="600" height="600">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			compositeoperation=document.getElementById('compositeoperation');
+		function drawtext(){
+			context.save();
+			context.shadowColor='rgba(51,51,51,0.7)';
+			context.shadowOffsetX=5;
+			context.shadowOffsetY=5;
+			context.shadowBlur=10;
+			context.strokeStyle='yellow';
+			context.fillStyle='green';
+			context.fillText('LYF',20,250);
+			context.strokeText('LYF',20,250);
+			context.restore();
+		}
+		function windowtocanvas(x,y){
+			var box=canvas.getBoundingClientRect();
+			return{x:x-box.left,y:y-box.top};
+		}
+		canvas.onmousemove=function(e){
+			var loc=windowtocanvas(e.clientX,e.clientY);
+			context.clearRect(0,0,canvas.width,canvas.height);
+			drawtext();
+			context.save();
+			context.globalCompositeOperation=compositeoperation.value;
+			context.beginPath();
+			context.arc(loc.x,loc.y,100,0,Math.PI*2,false);
+			context.fillStyle='orange';
+			context.fill();
+			context.stroke();
+			context.restore();
+		}
+		context.font='100px Arial';
+		drawtext();
+	</script>
+</body>
+</html>

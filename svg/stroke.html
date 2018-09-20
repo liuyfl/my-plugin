@@ -1,0 +1,29 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>Untitled file</title>
+	</head>
+
+	<body>
+<svg width="640" height="480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path id="path1" d="M241 89L199 137L191 165L195 210L213 240L235 255L271 260L319 259L349 248L381 234L421 225L454 216L478 299L468 343C468 343 444 367 440 368C436 369 409 390 406 392C403 394 375 412 375 412L352 418L342 421" fill="none" stroke="#10adf2" stroke-width="2"  stroke-dasharray="50 10" stroke-dashoffset="0"/>
+</svg>
+<input type="range" id="dasharray" min="0" max="100" value="100"></input>
+<input type="range" id="dashoffset" min="0" max="100" value="0"></input>
+<input type="text" id="len"></input>
+ <script src="http://cdn.gbtags.com/jquery/1.11.1/jquery.js"></script>
+<script type="text/javascript">
+var len=$('path')[0].getTotalLength();
+$('#len').val(len);
+$('#dasharray').on('input',function(){
+var value=$(this).val();
+$('#path1').attr('stroke-dasharray',value+' 10');
+});
+$('#dashoffset').on('input',function(){
+var value=$(this).val();
+$('#path1').attr('stroke-dashoffset',value);
+});
+</script>
+	</body>
+</html>

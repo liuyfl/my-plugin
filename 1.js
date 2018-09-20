@@ -1,0 +1,9 @@
+$(function(){
+	$(window).scroll(function(){
+		if(!($(window).scrollTop()>($('#item').offset().top+$('#item').outerHeight()))&&!($(window).scrollTop()<($('#item').offset().top-$(window).height())))
+		{
+			$('#rtest').addClass('m');
+			$('#rtest').css('display','inline-block');
+		}
+	});
+});

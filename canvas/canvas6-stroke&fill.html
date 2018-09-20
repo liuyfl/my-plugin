@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas6-stroke&fill</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">Canvas not supported.</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d');
+		context.font="34px Helvetia";
+		context.strokeStyle="blue";
+		context.fillStyle="rgb(51,51,51)";
+		context.lineWidth=2;
+		context.strokeText('stroke',20,50);
+		context.fillText('fill',200,50);
+		context.strokeText('stroke & fill',400,50);
+		context.fillText('stroke & fill',400,50);
+		context.lineWidth=5;
+		context.beginPath();
+		context.rect(40,100,150,100);
+		context.stroke();
+		context.beginPath();
+		context.rect(200,100,150,100);
+		context.fill();
+		context.beginPath();
+		context.rect(400,100,150,100);
+		context.stroke();
+		context.fill();
+		context.beginPath();
+		context.arc(100,300,60,0,Math.PI*3/2);
+		context.stroke();
+		context.beginPath();
+		context.arc(300,300,60,0,Math.PI*3/2);
+		context.fill();
+		context.beginPath();
+		context.arc(500,300,60,0,Math.PI*3/2);
+		context.stroke();
+		context.fill();
+		context.beginPath();
+		context.arc(100,450,60,0,Math.PI*3/2);
+		context.closePath();
+		context.stroke();
+		context.beginPath();
+		context.arc(300,450,60,0,Math.PI*3/2);
+		context.closePath();
+		context.fill();
+		context.beginPath();
+		context.arc(500,450,60,0,Math.PI*3/2);
+		context.closePath();
+		context.stroke();
+		context.fill();
+	</script>
+</body>
+</html>

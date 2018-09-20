@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas2-clock</title>
+</head>
+<body>
+	<canvas id="canvas" width="240" height="240">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			font_height=15,
+			margin=35,
+			hand_truncation=canvas.width/25,
+			hour_hand_truncation=canvas.width/10,
+			numeral_spacing=10,
+			radius=canvas.width/2-margin,
+			hand_radius=radius-numeral_spacing;
+		function drawCircle(){
+			context.beginPath();
+			context.arc(canvas.width/2,canvas.height/2,radius,0,Math.PI*2,true);
+			context.stroke();
+		}
+		function drawCenter(){
+			context.beginPath();
+			context.arc(canvas.width/2,canvas.height/2,5,0,Math.PI*2,true);
+			context.fill();
+		}
+		function drawHands(){
+			var date=new Date(),
+				hour=date.getHours();
+			hour=hour>12?(hour-12):hour;
+			drawHand(hour*5+date.getMinutes()/60*5,0.5);
+			drawHand(date.getMinutes(),0.75);
+			drawHand(date.getSeconds(),0.9);
+		}
+		function drawHand(loc,rate){
+			var angle=Math.PI*2*loc/60-Math.PI/2,
+				hradius=((radius-hand_truncation)*rate);
+			context.moveTo(canvas.width/2,canvas.height/2);
+			context.lineTo(canvas.width/2+Math.cos(angle)*hradius,canvas.height/2+Math.sin(angle)*hradius);
+			context.stroke();
+		}
+		function drawNumerals(){
+			var arr=[1,2,3,4,5,6,7,8,9,10,11,12],
+				angle=0,
+				numeralwidth=0;
+			for(var i=0;i<12;i++)
+			{
+				angle=Math.PI/6*(arr[i]-3);
+				numeralwidth=context.measureText(arr[i]).width;
+				context.fillText(arr[i],canvas.width/2+Math.cos(angle)*hand_radius-numeralwidth/2,canvas.height/2+Math.sin(angle)*hand_radius+5);
+			}
+		}
+		function drawClock(){
+			context.clearRect(0,0,canvas.width,canvas.height);
+			drawCircle();
+			drawCenter();
+			drawHands();
+			drawNumerals();
+		}
+		context.font=font_height+'px Arial';
+		setInterval(drawClock,1000);
+	</script>
+</body>
+</html>

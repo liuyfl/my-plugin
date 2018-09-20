@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas20-requestAnimationFrame</title>
+	<style type="text/css">
+	#canvas{
+		position: absolute;
+		left: 100px;
+		border:1px solid #eee;
+	}
+	</style>
+</head>
+<body>
+	<input type="button" id="animatebutton" value="Animate"> 
+	<canvas id="canvas" width="600" height="400">Canvas not supported</canvas>
+	<script type="text/javascript" src="js/requestnextanimationframe.js"></script>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			animatebutton=document.getElementById('animatebutton'),
+			pause=true,
+			lasttime=0,
+			lastfpsupdatetime=0,
+			lastfps=0,
+			discs=[
+				{
+					x:150,
+					y:250,
+					lastx:150,
+					lasty:250,
+					velx:-3.2,
+					vely:3.5,
+					radius:25,
+					innerColor:'rgba(255,255,0,1)',
+					middleColor:'rgba(255,255,0,0.7)',
+					outerColor:'rgba(255,255,0,0.5)',
+					strokeStyle:'gray',
+				},
+				{
+					x:150,
+					y:250,
+					lastx:150,
+					lasty:250,
+					velx:2.2,
+					vely:1.5,
+					radius:25,
+					innerColor:'rgba(255,0,0,1)',
+					middleColor:'rgba(255,0,0,0.7)',
+					outerColor:'rgba(255,0,0,0.5)',
+					strokeStyle:'orange',
+				},
+				{
+					x:150,
+					y:250,
+					lastx:150,
+					lasty:250,
+					velx:2.2,
+					vely:2.5,
+					radius:25,
+					innerColor:'rgba(0,255,0,1)',
+					middleColor:'rgba(0,255,0,0.7)',
+					outerColor:'rgba(0,255,0,0.5)',
+					strokeStyle:'blue',
+				}
+			];
+		context.font='48px Heletica';
+		animatebutton.onclick=function(e){
+			pause=pause?false:true;
+			if(pause)
+				animatebutton.value='Animate';
+			else
+			{
+				window.requestNextAnimationFrame(animate);
+				animatebutton.value='Pause';
+			}
+		}
+		function animate(time){
+			// if(!pause)
+			// {
+			// 	context.clearRect(0,0,canvas.width,canvas.height);
+			// 	update();
+			// 	draw();
+			// 	context.fillText(calculatefps().toFixed()+'fps',20,60);
+			// 	window.requestNextAnimationFrame(animate);
+			// }
+			var fps=0,time=+new Date();
+			if(!pause)
+			{
+				context.clearRect(0,0,canvas.width,canvas.height);
+				update();
+				draw();
+				fps=calculatefps();
+				if(time-lastfpsupdatetime>1000)
+				{
+					lastfpsupdatetime=time;
+					lastfps=fps;
+				}
+				context.fillText(lastfps.toFixed()+'fps',20,60);
+				window.requestNextAnimationFrame(animate);
+			}
+		}
+		function update(){
+			var disc=null;
+			for(var i=0;i<discs.length;i++)
+			{
+				disc=discs[i];
+				if(disc.x+disc.velx+disc.radius>canvas.width||disc.x+disc.velx-disc.radius<0)
+					disc.velx=-disc.velx;
+				if(disc.y+disc.vely+disc.radius>canvas.height||disc.y+disc.vely-disc.radius<0)
+					disc.vely=-disc.vely;
+				disc.x+=disc.velx;
+				disc.y+=disc.vely;
+			}
+		}
+		function draw(){
+			var disc,gradient;
+			for(var i=0;i<discs.length;i++){
+				disc=discs[i];
+				gradient=context.createRadialGradient(disc.x,disc.y,0,disc.x,disc.y,disc.radius);
+				gradient.addColorStop(0.3,disc.innerColor);
+				gradient.addColorStop(0.5,disc.middleColor);
+				gradient.addColorStop(1,disc.outerColor);
+				context.save();
+				context.beginPath();
+				context.arc(disc.x,disc.y,disc.radius,0,Math.PI*2,false);
+				context.fillStyle=gradient;
+				context.strokeStyle=disc.strokeStyle;
+				context.fill();
+				context.stroke();
+				context.restore();
+			}
+		}
+		function calculatefps(){
+			var now =+new Date(),fps=1000/(now-lasttime);
+			lasttime=now;
+			return fps;
+		}
+	</script>
+</body>
+</html>

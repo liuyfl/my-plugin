@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas15-text_font</title>
+	<style type="text/css">
+	#canvas{border:1px solid #eee;}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" height="300" width="900">Canvas not supported</canvas>
+	<script type="text/javascript">
+	// font-style:normal/italic/oblique
+	// font-variant:normal/small-caps
+	// font-weight:normal/bold/bolder/lighter/100/.....
+	// font-size:xx-small/x-small/medium/large/x-large/xx-large/smaller/larger/px/em/%/pt
+	// line-height:normal/....
+	// font-family:sans-serif
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			left_column_fonts=[
+				'2em palatino',
+				'border 2em palatino',
+				'lighter 2em palatino',
+				'italic 2em palatino',
+				'oblique small-caps 24px palatino',
+				'bold 14pt palatino',
+				'xx-large palatino',
+				'italic xx-large palatino'
+			],
+			right_column_font=[
+				'oblique 1.5em lucida console',
+				'x-large fantasy',
+				'italic 28px monaco',
+				'italic large copperplate',
+				'36px century',
+				'28px tahoma',
+				'28px impact',
+				'1.7em verdana'
+			],
+			left_x=30,right_x=460,y=10;
+		left_column_fonts.forEach(function(font){
+			context.font=font;
+			context.fillText(font,left_x,y+=30);
+		});
+		y=10;
+		right_column_font.forEach(function(font){
+			context.font=font;
+			context.fillText(font,right_x,y+=30);
+		});
+	</script>
+</body>
+</html>

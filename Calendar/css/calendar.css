@@ -1,0 +1,94 @@
+.datebox{
+		width: 200px;
+		height:20px;
+		font-size: 0px;
+	}
+	.date-arrow{
+		background: url('../images/datebox.png') no-repeat;
+		background-position: center center;
+		height: 20px;
+		width: 18px;
+		display: inline-block;
+		left: -19px;
+		position: relative;
+		vertical-align: top;
+	}
+	#date{
+		border: 1px solid #bbb;
+		height: 18px;
+		padding: 0px;
+	}
+	.calendar{
+		height: 180px;
+		width: 200px;
+		border: 1px solid #ddd;
+	}
+	.calendar-top{
+		width: 200px;
+		height: 20px;
+		display: inline-block;
+		background: #ddd;
+		position: relative;
+	}
+	.calendar-preyear{
+		height: 16px;
+		width: 16px;
+		background: url('../images/calendar_arrows.png') no-repeat;
+		display: inline-block;
+		position: absolute;
+		top: 2px;
+	}
+	.calendar-premonth{
+		height: 16px;
+		width: 16px;
+		background: url('../images/calendar_arrows.png') no-repeat -16px;
+		display: inline-block;
+		position: absolute;
+		left: 16px;
+		top: 2px;
+	}
+	.calendar-nextmonth{
+		height: 16px;
+		width: 16px;
+		background: url('../images/calendar_arrows.png') no-repeat -32px;
+		display: inline-block;
+		position: absolute;
+		right: 16px;
+		top: 2px;
+	}
+	.calendar-nextyear{
+		height: 16px;
+		width: 16px;
+		background: url('../images/calendar_arrows.png') no-repeat -48px;
+		display: inline-block;
+		position: absolute;
+		right: 0px;
+		top: 2px;
+	}
+	.calendar-time{
+		text-align: center;
+		font-size: 0px;
+	}
+	.calendar-time input{
+		border: 0px;
+		width: 30px;
+		background: #ddd;
+		position: absolute;
+		text-align: center;
+		height: 18px;
+	}
+	.calendar-month{
+		left: 50px;
+	}
+	.calendar-year{
+		right: 50px;
+	}
+	.calendar-index th{
+		text-align: center;
+		padding: 0 5px;
+		font-size: 10px;
+	}
+	.calendar-index td{
+		text-align: center;
+		padding: 0 5px;
+	}

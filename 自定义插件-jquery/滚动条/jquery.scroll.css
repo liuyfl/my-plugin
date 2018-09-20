@@ -1,0 +1,52 @@
+.customscrollbar_box{
+	position: relative;
+	overflow:hidden;
+	height:100%;
+	max-height: inherit;
+	max-width: 100%;
+}
+.customscrollbar_container{
+	width:auto;
+	height: auto;
+	position: relative;
+	overflow:hidden;
+	margin-right: 8px;
+	top:0px;
+	left:0px;
+}
+.customscrollbar_scroll_vertical{
+	position: absolute;
+	width:8px;
+	right: 0px;
+	top:0px;
+	height: 100%;
+}
+.customscrollbar_scroll_horizontal{
+	position: absolute;
+	width:100%;
+	left: 0px;
+	bottom:0px;
+	height: 8px;
+}
+.customscrollbar_scroll_vertical .customscrollbar_bar{
+	width: 8px;
+	height: 100%;
+	background: #b9b9b9;
+}
+.customscrollbar_scroll_horizontal .customscrollbar_bar{
+	width: 100%;
+	height: 8px;
+	background: #b9b9b9;
+}
+.customscrollbar_scroll_vertical .customscrollbar_thumb{
+	height: 30%;
+	background: #5595bb;
+	position: absolute;
+	top:0px;
+	width:100%;
+	left: 0px;
+}
+.customscrollbar_scroll_horizontal .customscrollbar_thumb{
+	height: 30%;
+	background: #5595bb;
+}

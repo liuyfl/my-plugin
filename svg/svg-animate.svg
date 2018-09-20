@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-flat-20030114.dtd">
+<!-- Created by SVGDeveloper 1.0 -->
+<svg width="640" height="480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect  width="100" height="50" fill="orange" x="0" y="100">
+<animate id="aa" attributeName="x" from="0" to="100" dur="5s" begin="3s" restart="always" fill="freeze"></animate>
+</rect>
+<animate xlink:href="#circler" attributeName="y" from="100" to="270" begin="aa.end" dur="4s" calcMode="paced" keyTimes="0;1.5;2;3;3.2" values="100;130;200;150;270" fill="remove"></animate>
+  <animate xlink:href="#circler11"
+             attributeName="y"
+             from="100"
+             to="270"
+             dur="4s"
+             begin="aa.end"
+             fill="freeze"
+             keyTimes="0;0.5;0.6;0.7;1"
+             values="35;65;245;200;265"
+  />
+<rect id="circler" width="100" height="100" x="100" y="100" fill="#10adf2"></rect>
+</svg>

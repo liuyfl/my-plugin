@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas5-shadow</title>
+</head>
+<body>
+	<canvas id="canvas" height="300" width="600">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			shadowcolor='rgba(0,0,0,0.5)';
+		context.font="16px Arial";
+		context.strokeStyle='black';
+		context.shadowColor=shadowcolor;
+		context.shadowOffsetX=1;
+		context.shadowOffsetY=1;
+		context.shadowBlur=2;
+		context.lineWidth=1;
+		context.strokeRect(10,10,50,50);
+		context.shadowOffsetX=-5;
+		context.shadowOffsetY=-5;
+		context.strokeRect(200,200,50,50);
+	</script>
+</body>
+</html>

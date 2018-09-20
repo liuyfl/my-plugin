@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas10-polygon</title>
+</head>
+<body>
+	<canvas id="canvas" height="300" width="600">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			Point=function(x,y){
+				this.x=x;
+				this.y=y;
+			};
+		function createpolygon(centerx,centery,radius,sides,startangle){
+			var points=[],angle=startangle||0;
+			for(var i=0;i<sides;i++)
+			{
+				points.push(new Point(centerx+Math.sin(angle)*radius,centery-Math.cos(angle)*radius));
+				angle+=Math.PI*2/sides;
+			}
+			context.beginPath();
+			context.moveTo(points[0].x,points[0].y);
+			for(var i=1;i<sides;i++)
+				context.lineTo(points[i].x,points[i].y);
+			context.closePath();
+			context.stroke();
+		}
+		context.strokeStyle='rgba(0,0,0,0.7)';
+		createpolygon(100,100,50,6,Math.PI/2);
+		createpolygon(400,100,50,7,Math.PI/2);
+	</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas22-stopwatch</title>
+</head>
+<body>
+<div id="controls">
+Seconds(0-60):<input type="text" id="seconds" value="10" style="width:40px;">
+<input type="button" value="start" id="startstopbtn">
+</div>
+	<canvas id="canvas" width="600" height="600">Canvas not supported</canvas>
+	<script type="text/javascript" src="js/requestnextanimationframe.js"></script>
+	<script type="text/javascript" src="js/stopwatch.js"></script>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			startstopbtn=document.getElementById('startstopbtn'),
+			secondsinput=document.getElementById('seconds'),
+			stopwatch=new Stopwatch(),
+			r1=180,
+			r2=160,
+			l1=15,
+			l2=7;
+		function drawgrid(color,stepx,stepy){
+			context.save();
+			context.strokeStyle=color;
+			context.lineWidth=0.5;
+			context.fillStyle='#fff';
+			context.fillRect(0,0,canvas.width,canvas.height);
+			for(var i=stepx+0.5;i<canvas.width;i+=stepx)
+			{
+				context.beginPath();
+				context.moveTo(i,0);
+				context.lineTo(i,canvas.height);
+				context.stroke();
+			}
+			for(var i=stepy+0.5;i<canvas.height;i+=stepy)
+			{
+				context.beginPath();
+				context.moveTo(0,i);
+				context.lineTo(canvas.width,i);
+				context.stroke();
+			}
+			context.restore();
+		}
+		function drawcircle(){
+			context.save();
+			context.beginPath();
+			context.arc(canvas.width/2,canvas.height/2,r1,0,Math.PI*2,false);
+			context.fillStyle='rgba(206,222,229,1)';
+			context.strokeStyle='rgba(74,186,233,1)';
+			context.fill();
+			context.stroke();
+			context.restore();
+			context.save();
+			context.beginPath();
+			context.arc(canvas.width/2,canvas.height/2,r2,0,Math.PI*2,true);
+			context.clip();
+			context.clearRect(0,0,canvas.width,canvas.height);
+			drawgrid('#eee',10,10);
+			context.restore();
+			context.save();
+			context.beginPath();
+			context.arc(canvas.width/2,canvas.height/2,r2,0,Math.PI*2,true);
+			context.strokeStyle='rgba(135,202,235,1)';
+			context.stroke();
+			context.restore();
+			drawline();
+			context.save();
+			context.beginPath();
+			context.arc(canvas.width/2,canvas.height/2,r2-l1,0,Math.PI*2,true);
+			context.strokeStyle='rgba(206,222,229,1)';
+			context.stroke();
+			context.restore();
+			drawtext();
+			// drawprocess(0);
+		}
+		function drawline(){
+			var x1=canvas.width/2+r2,y1=canvas.height/2,
+				x2=canvas.width/2+r2-l1,y2=canvas.height/2,angle=0,l;
+			context.save();
+			for(var i=0;i<60;i++)
+			{
+				angle=Math.PI*2/60*i;
+				if(i%5==0)
+					l=r2-l1;
+				else
+					l=r2-l2;
+				context.beginPath();
+				context.moveTo(canvas.width/2+r2*Math.cos(angle),y1+r2*Math.sin(angle));
+				context.lineTo(canvas.width/2+l*Math.cos(angle),y2+l*Math.sin(angle));
+				context.stroke();
+			}
+			context.restore();
+		}
+		function drawtext(){
+			var x1=canvas.width/2+r2,y1=canvas.height/2,angle=0,w,l=r1+20;
+			var arr=[0,55,50,45,40,35,30,25,20,15,10,5];
+			context.save();
+			context.font='24px Arial';
+			for(var i=0;i<12;i++)
+			{
+				angle=Math.PI*2/12*i-Math.PI/2;
+				w=context.measureText(arr[i]).width;
+				context.fillText(arr[i],canvas.width/2+Math.cos(angle)*l-w/2,canvas.height/2+Math.sin(angle)*l+8);
+			}
+			context.restore();
+		}
+		function drawprocess(seconds){
+			if(seconds>60||seconds<0)
+				return;
+			var angle=(60-seconds)*Math.PI*2/60-Math.PI/2;
+			context.save()
+			context.strokeStyle='rgba(74,186,233,1)';
+			context.beginPath();
+			context.moveTo(canvas.width/2,canvas.height/2);
+			context.lineTo(canvas.width/2+r1*Math.cos(angle),canvas.height/2+r1*Math.sin(angle));
+			context.stroke();
+			context.fillStyle='rgba(74,186,233,1)';
+			context.strokeStyle='rgb(140,140,140)';
+			context.beginPath();
+			context.arc(canvas.width/2,canvas.height/2,l2,0,Math.PI*2,false);
+			context.fill();
+			context.stroke();
+			context.beginPath();
+			context.arc(canvas.width/2+r1*Math.cos(angle),canvas.height/2+r1*Math.sin(angle),l2,0,Math.PI*2,false);
+			context.fill();
+			context.stroke();
+			context.restore();
+			secondsinput.value=seconds;
+		}
+		secondsinput.onkeyup=function(e){
+			var value=parseFloat(secondsinput.value);
+			context.clearRect(0,0,canvas.width,canvas.height);
+			drawgrid('#eee',10,10);
+			drawcircle();
+			drawprocess(value);
+		}
+		function animate(){
+			if(stopwatch.inRunning()&&stopwatch.getElapsed()>secondsinput.value*1000)
+			{
+				
+					stopwatch.stop();
+					startstopbtn.value='start';
+					secondsinput.disabled=false;
+					secondsinput.value=0;
+			}
+			else if(stopwatch.inRunning())
+				{
+					context.clearRect(0,0,canvas.width,canvas.height);
+					drawgrid('#eee',10,10);
+					drawcircle();
+					drawprocess(stopwatch.getElapsed());
+					// secondsinput.value=stopwatch.getElapsed();
+					window.requestNextAnimationFrame(animate);
+				}
+		}
+		startstopbtn.onclick=function(e){
+			var value=startstopbtn.value;
+			if(value==='start')
+			{
+				stopwatch.start();
+				startstopbtn.value='stop';
+				window.requestNextAnimationFrame(animate);
+				secondsinput.disabled=true;
+			}
+			else
+			{
+				startstopbtn.stop();
+				startstopbtn.value='start';
+				secondsinput.disabled=false;
+			}
+			stopwatch.reset();
+		}
+		drawgrid('#eee',10,10);
+		drawcircle();
+		drawprocess(10);
+	</script>
+</body>
+</html>

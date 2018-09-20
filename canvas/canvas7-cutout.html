@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas7-cutout</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">Canvas not supported</canvas>
+	<canvas id="canvas1" width="600" height="600">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d');
+		context.fillStyle='rgba(100,140,230,0.5)';
+		context.strokeStyle=context.fillStyle;
+		draw();
+		function draw(){
+			context.clearRect(0,0,canvas.width,canvas.height);
+			context.save();
+			context.shadowColor='rgba(0,0,0,0.8)';
+			context.shadowOffsetX=12;
+			context.shadowOffsetY=12;
+			context.shadowBlur=15;
+			drawTwoArcs();
+			context.restore();
+		}
+		function drawTwoArcs(){
+			context.beginPath();
+			context.arc(300,190,150,0,Math.PI*2,false);
+			// context.beginPath();
+			context.arc(300,190,100,0,Math.PI*2,true);
+			context.fill();
+			context.shadowColor=undefined;
+			context.shadowOffsetX=0;
+			context.shadowOffsetY=0;
+			context.stroke();
+		}
+		var canvas1=document.getElementById('canvas1'),
+			context1=canvas1.getContext('2d');
+		context1.fillStyle='blue';
+		draw1();
+		function draw1(){
+			context1.clearRect(0,0,canvas1.width,canvas1.height);
+			context1.save();
+			context1.shadowColor='rgba(0,0,0,0.8)';
+			context1.shadowOffsetX=12;
+			context1.shadowOffsetY=12;
+			context1.shadowBlur=15;
+			drawcutouts();
+			strokecutout();
+		}
+		function drawcutouts(){
+			context1.beginPath();
+			addouter();
+
+			addcircle();
+			addrect();
+			addtriangle();
+			context1.fill();
+		}
+		function addouter(){
+			context1.moveTo(110,35);
+			context1.lineTo(480,35);
+			context1.lineTo(480,370);
+			context1.lineTo(110,370);
+			context1.closePath();
+		}
+		function addcircle(){
+			context1.arc(300,300,40,0,Math.PI*2,true);
+		}
+		function addrect(){
+			context1.moveTo(310,55);
+			context1.lineTo(310,90);
+			context1.lineTo(380,90);
+			context1.lineTo(380,55);
+			context1.closePath();
+		}
+		function addtriangle(){
+			context1.moveTo(400,200);
+			context1.lineTo(250,115);
+			context1.lineTo(200,200);
+			context1.closePath();
+		}
+		function strokecutout(){
+			context1.save();
+			context.strokeStyle='rgba(0,0,0,0.7)';
+			context1.beginPath();
+			addouter();
+			context1.stroke();
+			context1.beginPath();
+			addcircle();
+			addrect();
+			addtriangle();
+			context1.stroke();
+			context.restore();
+		}
+	</script>
+</body>
+</html>

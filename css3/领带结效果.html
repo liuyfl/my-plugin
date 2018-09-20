@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>领带结效果</title>
+	<style type="text/css">
+	.ribbon{
+		position: relative;
+		max-width: 300px;
+		/*height:50px;*/
+		margin:100px;
+		background: #10adf2;
+		padding: 1em 2em;
+	}
+	.ribbon:before,.ribbon:after{
+		content:'';
+		position: absolute;
+		
+		display: block;
+		bottom:-1.2em;
+		border:1.5em solid #49bef2;
+		z-index: -1;
+	}
+	.ribbon:before{
+		
+		left:-1.8em;
+		border-right-width: 1.5em;
+		border-left-color:transparent;
+	}
+	.ribbon:after{
+		
+		right:-1.8em;
+		border-left-width: 1.5em;
+		border-right-color: transparent;
+	}
+	.ribbon-content{
+		display: inline-block;
+		width:100%;
+		text-align: center;
+		/*height:50px;*/
+		/*line-height: 50px;*/
+		font-size: 20px;
+	}
+	.ribbon-content:before,.ribbon-content:after{
+		content:'';
+		position: absolute;
+		border-style: solid;
+		border-color:#a8afb2 transparent transparent transparent;
+		bottom:-1em;
+		border-width: 1em 0 0 1em;
+	}
+	.ribbon-content:before{
+		left: 0px;
+	}
+	.ribbon-content:after{
+		border-width: 1em 1em 0 0;
+		right:0px;
+	}
+	</style>
+</head>
+<body>
+	<div class="ribbon">
+		<span class="ribbon-content">css3实现彩带效果</span>
+	</div>
+</body>
+</html>

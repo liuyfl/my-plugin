@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-flat-20030114.dtd">
+<!-- Created by SVGDeveloper 1.0 -->
+<svg width="640" height="480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<circle cx="50" cy="50" r="50" stroke="red" fill="#10adf2"></circle>
+<rect x="10" y="10" width="100" height="100" stroke="red" fill="#ccc" rx="10" ry="20" fill-opacity="0.6"></rect>
+<ellipse cx="200" cy="50" rx="50" ry="60" fill="#10adf2"></ellipse>
+<line x1="200" y1="300" x2="200" y2="350" stroke="#10adf2"></line>
+<polygon points="150,70 200,90 240,130 300,100 260,100" stoke="red"></polygon>
+<polyline points="250,70 350,80 400,100 440,150" stroke-width="10" stroke="orange" fill="none"></polyline>
+<path d="M 400 400 L 450 100  Z" stroke="#10adf2" fill="none" stroke-width="10"></path>
+<path d="M 300 300 Q 200 400 300 200" stroke="red" fill="none" stroke-width="5"></path>
+<path d="M 350 350 C 300 350 350 300 400 350" stroke="green" fill="none" stroke-width="6"></path>
+<path d="M 100 300 A 50 30 0 0 0 100 100" fill="green"></path>
+<text x="30" y="60" stroke="red" transform="rotate(40,70,90)">网站地址</text>
+ <text x="30" y="60">
+ <tspan x="30" y="100">1</tspan>
+ <tspan x="30" y="120">2</tspan>
+ </text>
+ <a xlink:href="http://www.baidu.com" target="_blank"><text x="100" y="400">baidu</text></a>
+  <defs>
+  <filter id="filter1" x="0" y="0">
+  <feGaussianBlur in="SourceGraphic" stdDeviation="5"></feGaussianBlur>
+  </filter>
+ </defs>
+ <rect width="50" height="100" x="500" y="100" stroke="orange" stroke-width="5" fill="yellow" filter="url(#filter1)"></rect>
+   <defs>
+     <filter id="myfilter" x="0" y="0">
+       <feGaussianBlur in="SourceGraphic" stdDeviation="5"/>
+     </filter>
+   </defs>
+   <rect x="30" y="30" width="200" height="100" stroke="green" stroke-width="10"  fill="orange" filter="url(#myfilter)"/>
+<defs>
+<pattern id="mypattern" patternUnits="userSpaceOnUse" x="200" y="360" width="50" height="50">
+<path d="M 0 0 L 50 50 L 50 0 Z" stroke="#10adf2" stroke-width="5"></path>
+</pattern>
+</defs>
+<rect width="200" height="100" x="200" y="360" stroke="black" stroke-width="10" fill="url(#mypattern)"></rect>
+<defs>
+<linearGradient id="linear1">
+<stop offset="0%" stop-color="red"></stop>
+<stop offset="50%" stop-color="#11adf2"></stop>
+<stop offset="100%" stop-color="#00adf2"></stop>
+</linearGradient>
+<radialGradient id="gradial1">
+<stop offset="0%" stop-color="red"></stop>
+<stop offset="50%" stop-color="#11adf2"></stop>
+<stop offset="100%" stop-color="#00adf2"></stop>
+</radialGradient>
+</defs>
+<rect id="rect1" width="100" height="100" x="400" y="380" stroke="orange" stroke-width="4" fill="url(#gradial1)" onclick="showfun()"></rect>
+<script type="text/javascript">
+function showfun(){
+alert('gradialdient');
+var fill=document.getElementById('rect1').getAttributeNS(null,'fill');
+alert(fill);
+}
+</script>
+</svg>
+  

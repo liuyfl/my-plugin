@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas21-parallax animation</title>
+	<style type="text/css">
+	#canvas{
+		position: absolute;
+		left:100px;
+	}
+	</style>
+</head>
+<body>
+<input type="button" id="animationbtn" value="animate">
+	<canvas id="canvas" height="450" width="1000">Canvas not supported</canvas>
+	<script type="text/javascript" src="js/requestnextanimationframe.js"></script>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			animation=document.getElementById('animationbtn'),
+			tree=new Image(),
+			neartree=new Image(),
+			grass=new Image(),
+			grass1=new Image(),
+			sky=new Image(),
+			paused=true,
+			lasttime=0,
+			lastfpsupdatetime=0,
+			lastfpsupdate=0,
+			fps=60,
+			skyoffset=0,
+			grassoffset=0,
+			treeoffset=0,
+			neartreeoffset=0,
+			tree_velocity=20,
+			fast_tree_velocity=40,
+			sky_velocity=10,
+			grass_velocity=75;
+		context.font='48px Helvetica';
+		tree.src='images/smalltree.png';
+		neartree.src='images/tree-twotrunks.png';
+		grass.src='images/grass.png';
+		grass1.src='images/grass2.png';
+		sky.src='images/sky.png';
+		sky.onload=function(e){
+			draw();
+		}
+		function draw(){
+			context.save();
+			skyoffset=skyoffset<canvas.width?skyoffset+sky_velocity/fps:0;
+			grassoffset=grassoffset<canvas.width?grassoffset+grass_velocity/fps:0;
+			treeoffset=treeoffset<canvas.width?treeoffset+tree_velocity/fps:0;
+			neartreeoffset=neartreeoffset<canvas.width?neartreeoffset+fast_tree_velocity/fps:0;
+
+			context.save();
+			context.translate(-skyoffset,0);
+			context.drawImage(sky,0,0);
+			context.drawImage(sky,sky.width-2,0);
+			context.restore();
+
+			context.save();
+			context.translate(-treeoffset,0);
+			context.drawImage(tree,50,canvas.height-tree.height-10);
+			context.drawImage(tree,1050,canvas.height-tree.height-10);
+			context.drawImage(tree,400,canvas.height-tree.height-10);
+			context.drawImage(tree,1400,canvas.height-tree.height-10);
+			context.drawImage(tree,800,canvas.height-tree.height-10);
+			context.drawImage(tree,1800,canvas.height-tree.height-10);
+			context.restore();
+
+			context.save();
+			context.translate(-neartreeoffset,0);
+			context.drawImage(neartree,200,canvas.height-neartree.height+10);
+			context.drawImage(neartree,1200,canvas.height-neartree.height+10);
+			context.drawImage(neartree,600,canvas.height-neartree.height+10);
+			context.drawImage(neartree,1600,canvas.height-neartree.height+10);
+			context.restore();
+
+			context.save();
+			context.translate(-grassoffset,0);
+			context.drawImage(grass,0,canvas.height-grass.height);
+			context.drawImage(grass,grass.width-2,canvas.height-grass.height);
+			context.drawImage(grass1,0,canvas.height-grass1.height);
+			context.drawImage(grass1,grass1.width,canvas.height-grass1.height);
+			context.restore();
+		}
+		function calculatefps(now){
+			var fps=1000/(now-lasttime);
+			lasttime=now;
+			return fps;
+		}
+		animationbtn.onclick=function(e){
+			paused=paused?false:true;
+			if(paused)
+			{
+				animationbtn.value="animate";
+			}
+			else{
+				animationbtn.value='pause';
+			}
+		}
+		function erase(){
+			context.clearRect(0,0,canvas.width,canvas.height);
+		}
+		function animate(now){
+			if(now===undefined)
+				now=+new Date();
+			fps=calculatefps(now);
+			if(!paused)
+			{
+				// erase();
+				draw();
+			}
+			window.requestNextAnimationFrame(animate);
+		}
+		window.requestNextAnimationFrame(animate);
+	</script>
+</body>
+</html>

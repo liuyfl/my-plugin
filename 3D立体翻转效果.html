@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>css3实现3D立体翻转导航特效</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<style>
+.nav-menu  li {
+	display: inline;
+}
+.nav-menu li a {
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	overflow: visible;
+	line-height: 40px;
+	font-size: 20px;
+	width:200px;
+	height: 50px;
+	perspective: 2000px;
+}
+.three-d {
+	-webkit-perspective: 200px;
+	-moz-perspective: 200px;
+	-ms-perspective: 200px;
+	-o-perspective: 200px;
+	perspective: 200px;
+	-webkit-transition: all .07s linear;
+ 	-moz-transition: all .07s linear;
+ 	-ms-transition: all .07s linear;
+ 	-o-transition: all .07s linear;
+ 	transition:all .7s linear;
+	position: relative;
+}
+.three-d:not(.active):hover {
+	cursor: pointer;
+}
+.three-d:not(.active):hover .three-d-box,  .three-d:not(.active):focus .three-d-box {
+	-wekbit-transform: translateZ(-25px) rotateX(90deg);
+ 	-moz-transform: translateZ(-25px) rotateX(90deg);
+ 	-o-transform: translateZ(-25px) rotateX(90deg);
+ 	-ms-transform: translateZ(-25px) rotateX(90deg);
+ 	transform: translateZ(-25px) rotateX(90deg);
+}
+.three-d-box {
+	-webkit-transition: all .3s ease-out;
+ 	-moz-transition: all .3s ease-out;
+ 	-ms-transition: all .3s ease-out;
+ 	-o-transition: all .3s ease-out;
+ 	transition: all .3s ease-out;
+	-webkit-transform: translatez(-25px);
+	-moz-transform: translatez(-25px);
+	-ms-transform: translatez(-25px);
+	-o-transform: translatez(-25px);
+	transform: translatez(-25px);
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-pointer-events: none;
+	-moz-pointer-events: none;
+	-ms-pointer-events: none;
+	-o-pointer-events: none;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.content{
+	-webkit-transform: rotatex(0deg) translatez(25px);
+	-moz-transform: rotatex(0deg) translatez(25px);
+	-ms-transform: rotatex(0deg) translatez(25px);
+	-o-transform: rotatex(0deg) translatez(25px);
+	transform: rotatex(0deg) translatez(25px);
+}
+.content-hover{
+	-webkit-transform: rotatex(-90deg) translatez(25px);
+	-moz-transform: rotatex(-90deg) translatez(25px);
+	-ms-transform: rotatex(-90deg) translatez(25px);
+	-o-transform: rotatex(-90deg) translatez(25px);
+	transform: rotatex(-90deg) translatez(25px);
+	color: #FFE7C4;
+}
+.content{
+	width:200px;
+	height: 50px;
+	border:1px solid #10adf2;
+	color:#059dd9;
+	font-size: 30px;
+	cursor: pointer;
+	-webkit-pointer-events: none;
+	-moz-pointer-events: none;
+	-ms-pointer-events: none;
+	-o-pointer-events: none;
+	pointer-events: none;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: center;
+	line-height: 50px;
+}
+.content-hover {
+    width:200px;
+	height: 50px;
+	padding:0 10px;
+	color:#059dd9;
+	font-size: 30px;
+	cursor: pointer;
+	position: absolute;
+	top: 0px;
+    left: 0;
+    background: #10adf2;
+    color: white;
+    pointer-events: none;
+    -webkit-pointer-events: none;
+	-moz-pointer-events: none;
+	-ms-pointer-events: none;
+	-o-pointer-events: none;
+	pointer-events: none;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: center;
+	line-height: 50px;
+}
+.hidden{
+	display: none;
+}
+
+/*.content-1{
+	width:200px;
+	height: 50px;
+	color:transparent;
+	font-size: 30px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 50px;
+	margin:50px 0 0 0;
+	position: relative;
+}
+.content-1:before,.content-1:after{
+	content:"3D翻转";
+	-webkit-font-smoothing:antialiased;
+	display: block;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	color: #059dd9;
+	line-height: 50px;
+	border:1px solid #10adf2;
+}
+.content-1:after{
+	content:'3D立体翻转';
+	color:white;
+	background: #10adf2;
+	display: none;
+}
+.content-1:before,.content-1:after{
+	-webkit-transform-origin:50% 50% -25px;
+	transform-origin:50% 50% -25px;
+	transition:0.3s cubic-bezier(0.19, 1, 0.22, 1);
+	display: block;
+}
+.content-1:after{
+	-webkit-transform:rotateX(-90deg);
+	transform:rotateX(-90deg);
+}
+.content-1:hover:before{
+	display:block;
+	-webkit-transform:rotateX(90deg);
+	transform:rotateX(90deg);
+}
+.content-1:hover:after{
+	display: block;
+	-webkit-transform:rotateX(0);
+	transform:rotateX(0);
+}*/
+.content-1{
+width:200px;
+	height: 50px;
+	color:transparent;
+	font-size: 30px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 50px;
+	margin:50px 0;
+	position: relative;
+}
+.content-1:before{
+	content:"3D翻转";
+	-webkit-font-smoothing:antialiased;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	display: block;
+	color: #059dd9;
+	line-height: 50px;
+	border:1px solid #10adf2;
+	-webkit-transform-origin:50% 50% -25px;
+	transform-origin:50% 50% -25px;
+	-ms-transform-origin:50% 50% -25px;
+	transition:0.3s;
+}
+.content-1:after{
+	content:"3D立体翻转";
+	-webkit-font-smoothing:antialiased;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	color:white;
+	line-height: 50px;
+	background: #10adf2;
+	-webkit-transform-origin:50% 50% -25px;
+	transform-origin:50% 50% -25px;
+	-ms-transform-origin:50% 50% -25px;
+	transition:0.3s;
+	-ms-transform:rotateX(-90deg);
+	-webkit-transform:rotateX(-90deg);
+	transform:rotateX(-90deg);
+	
+}
+.content-1:hover:before{
+	-ms-transform:rotateX(90deg);
+	-webkit-transform:rotateX(90deg);
+	transform:rotateX(90deg);
+	
+}
+.content-1:hover:after{
+	-ms-transform:rotateX(0);
+	-webkit-transform:rotateX(0);
+	transform:rotateX(0);
+}
+
+.content-jd{
+	width:200px;
+	height: 50px;
+	border:1px solid #10adf2;
+	/*border-radius: 10px;*/
+	/*padding:0 10px;*/
+	color:#059dd9;
+	font-size: 30px;
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	-webkit-transform-origin:50% 50% -25px;
+	transform-origin:50% 50% -25px;
+	-ms-transform-origin:50% 50% -25px;
+	 -webkit-transform:rotateX(0);
+    transform:rotateX(0);
+    transition:0.3s;
+}
+.content-jd span,.content-jd-hover span,.content-taobao span,.content-taobao-hover span{
+	height: 50px;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 50px;
+	font-size: 30px;
+}
+/*.content-jd:before{
+	content:url(images/jd.png)购买;
+	-webkit-font-smoothing:antialiased;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	display: block;
+	color: #059dd9;
+	line-height: 50px;
+	padding: 0 10px;
+	border:1px solid #10adf2;
+	-webkit-transform-origin:50% 50% -25px;
+	transform-origin:50% 50% -25px;
+	-ms-transform-origin:50% 50% -25px;
+	transition:0.3s;
+}*/
+.content-jd-hover{
+    width:200px;
+	height: 50px;
+	/*border-radius: 10px;*/
+	/*padding:0 10px;*/
+	color:#059dd9;
+	border:1px solid #10adf2;
+	font-size: 30px;
+	display: inline-block;
+	cursor: pointer;
+    position: absolute;
+    top: -52px;
+    background: #10adf2;
+    color: white;
+    position: relative;;
+    -webkit-transform-origin:50% 50% -25px;
+	transform-origin:50% 50% -25px;
+	-ms-transform-origin:50% 50% -25px;
+    -webkit-transform:rotateX(-90deg);
+    transform:rotateX(-90deg);
+    transition:0.3s;
+}
+.jd{
+	font-size: 0px;
+	width: 202px;
+	height: 52px;
+}
+</style>
+</head>
+<body>
+  <ul class="nav-menu">
+       <li><a href="#" class="three-d"> 
+       	<div class="hidden">3D</div>
+       	<span class="three-d-box">
+       		<div class="content">
+       			3D翻转
+            </div>
+       		 <div class="content-hover">
+       		 	3D立体翻转
+	         </div>
+       	</span> 
+       </a>
+   </li>
+  </ul>
+
+  <div class="content-1">
+  	3D翻转
+  </div>
+  <div class="jd">
+	<div class="content-jd">
+		<img src="images/jd.png">
+		<span>购买</span>
+	</div>
+	 <div class="content-jd-hover">
+		<img src="images/jd-hover.png">
+		<span style="top:-10px;">购买</span>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('.content-jd').mouseenter(function(){
+			$(this).css('-webkit-transform','rotateX(90deg)').css('transform','rotateX(90deg)');
+			$('.content-jd-hover').css('-webkit-transform','rotateX(0deg)').css('transform','rotateX(0deg)');
+		}).mouseleave(function(){
+			$('.content-jd-hover').css('-webkit-transform','rotateX(-90deg)').css('transform','rotateX(-90deg)');
+			$('.content-jd').css('-webkit-transform','rotateX(0deg)').css('transform','rotateX(0deg)');
+		});
+		$('.content-jd-hover').mouseenter(function(){
+		}).mouseleave(function(){
+			$(this).css('-webkit-transform','rotateX(-90deg)').css('transform','rotateX(-90deg)');
+			$('.content-jd').css('-webkit-transform','rotateX(0deg)').css('transform','rotateX(0deg)');
+		})
+	});
+</script>
+</body>
+</html>

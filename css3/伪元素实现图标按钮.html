@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3 伪元素实现可切换图标按钮</title>
+	<link href="../font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+	<style type="text/css">
+	div button{
+		position: relative;
+		border:0px;
+		background: none;
+		text-indent: -1000%;
+	}
+	div button:before,div button:after{
+		content:'';
+		position: absolute;
+		width:4px;
+		height:12px;
+		left:0px;
+		top:0px;
+		background: #10adf2;
+	}
+	div button:before{
+		transform:translate(-70%,-50%) rotate(45deg);
+	}
+	div button:after{
+		transform:translate(70%,-50%) rotate(-45deg);
+	}
+	.type2 button:before{
+		transform:translate(-70%,-50%) rotate(-45deg);
+	}
+	.type2 button:after{
+		transform:translate(70%,-50%) rotate(45deg);
+	}
+	.type3 button:before{
+		transform:none;
+	}
+	.type3 button:after{
+		transform:rotate(90deg);
+	}
+	.type4 button:before{
+		transform:rotate(45deg);
+	}
+	.type4 button:after{
+		transform:rotate(-45deg);
+	}
+	</style>
+</head>
+<body>
+	<div>
+		<button>按钮1</button>
+	</div>
+	<div class="type2">
+		<button>按钮2</button>
+	</div>
+	<div class="type3">
+		<button>按钮3</button>
+	</div>
+	<div class="type4">
+		<button>按钮4</button>
+	</div>
+	<i class="fa fa-angle-down fa-5x"></i>
+</body>
+</html>

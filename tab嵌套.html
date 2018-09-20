@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="tips" content="为了以后方便，把常用的小效果制作整理，如有问题或者更好的方法，请告知！谢谢！！！！">
+<meta name="tips" content="不写乱七八糟的的描述，大家直接复制即何使用，涉及到调用JS文件的注意一下路径问题。用最简洁的方法，描述一些基本原理。">
+<title></title>
+<style type="text/css">
+body{font-size:12px;padding:0;margin:0;} 
+ul,li,dl,dd{list-style:none;padding:0;margin:0;}
+.clr:after{content:".";display:block;height:0;clear:both;overflow:hidden;}
+.clr{*zoom:1}
+.rgTab{width:90%;margin:50px auto;}
+.btnTabs{width: 90%;margin-left:1px;}
+.btnTabs b,.btnTabs li,.btnTabs a{
+    float:left;width:33%;height:30px;display:inline-block;
+    line-height:30px;text-align:center;font-size:16px;font-weight:bold;
+    background:#eee;border:1px solid #dedede;margin-left:-1px;cursor:pointer;
+    border-top-left-radius:5px;border-top-right-radius:5px;
+}
+.btnTabs b.on,.btnTabs li.on,.btnTabs a.on{border-bottom:1px solid #fff;background:#fff;}
+.showBox1,.showBox2,.showBox3{width:90%;display:none;border:1px solid #dedede;margin-top:-1px;padding:22px 20px 56px 20px;}
+
+</style>
+<script src="js/jquery-1.7.2.js"></script>
+<script>
+function tab(tabID,box){
+    $(tabID).click(function(){
+        $(tabID).removeClass('on');
+        $(box).hide();
+        $(this).addClass('on');
+        $(box).eq($(this).index()).show();
+    });
+}
+$(document).ready(function(){
+    //选项卡
+    tab("#tab1 b",'.showBox1');
+    tab("#tab2 li",'.showBox2');
+    tab("#tab3 a",'.showBox3');
+});
+</script>
+</head>
+<body>
+<div id="tab1" class="rgTab">
+    <div class="btnTabs clr">
+        <b class="on">111111</b>
+        <b>222222</b>
+        <b>333333</b>
+    </div>
+    <div class="showBox1" style="display:block;">
+        <div class="tit">第一层</div>
+        <div id="tab2" class="rgTab">
+            <ul class="btnTabs clr">
+                <li class="on">aaa</li>
+                <li>bbb</li>
+                <li>ccc</li>
+            </ul>
+            <div class="showBox2" style="display:block;">
+                <div class="tit">第二层</div>
+                <div id="tab3" class="rgTab">
+                    <div class="btnTabs clr">
+                        <a class="on">aaa</a>
+                        <a>bbb</a>
+                        <a>ccc</a>
+                    </div>
+                    <div class="showBox3" style="display:block;"><div class="tit">第三层</div>aaaaaaaaaa</div>
+                    <div class="showBox3"><div class="tit">第三层</div>bbbbbbb</div>
+                    <div class="showBox3"><div class="tit">第三层</div>cccccccc</div>
+                </div>
+            </div>
+            <div class="showBox2"><div class="tit">第二层</div>bbbb</div>
+            <div class="showBox2"><div class="tit">第二层</div>cccc</div>
+        </div>
+    </div>
+    <div class="showBox1"><div class="tit">第一层</div>222222</div>
+    <div class="showBox1"><div class="tit">第一层</div>333333</div>
+</div>
+</body>
+</html>

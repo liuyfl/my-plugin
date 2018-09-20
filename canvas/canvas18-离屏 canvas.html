@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas18-离屏 canvas</title>
+</head>
+<body>
+<output id="scaleoutput">1.0</output>
+<input type="range" id="scaleslider" min="1" max="3.0" value="1.0">
+	<canvas id="canvas" height="400" width="600">Canvas not supported</canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById('canvas'),
+			context=canvas.getContext('2d'),
+			offscreencanvas=document.createElement('canvas'),
+			offscreencontext=offscreencanvas.getContext('2d'),
+			image=new Image(),
+			scaleoutput=document.getElementById('scaleoutput'),
+			scaleslider=document.getElementById('scaleslider'),
+			canvasradio=document.getElementById('canvasradio'),
+			imageradio=document.getElementById('imageradio'),
+			scale=scaleslider.value,
+			scale=1.0,
+			min=1.0,
+			max=3.0;
+		offscreencanvas.width=canvas.width;
+		offscreencanvas.height=canvas.height;
+		image.src='images/countrypath.jpg';
+		image.onload=function(e){
+			context.drawImage(image,0,0,canvas.width,canvas.height);
+			offscreencontext.drawImage(image,0,0,canvas.width,canvas.height);
+			drawwatermark(context);
+			drawwatermark(offscreencontext);
+			drawscaletext(scaleslider.value);
+		}
+		function drawwatermark(context){
+			var lineone='copyright',
+				linetwo='copy2',
+				textmeasure;
+			context.save();
+			context.fillStyle='rgba(100,140,230,0.5)';
+			context.strokeStyle='yellow';
+			context.shadowColor='rgba(50,50,50,1)';
+			context.shadowOffsetX=5;
+			context.shadowOffsetY=5;
+			context.shadowBlur=10;
+			context.font='50px Arial';
+			textmeasure=context.measureText(lineone).width;
+			context.translate(canvas.width/2,canvas.height/2);
+			context.fillText(lineone,-textmeasure/2,0);
+			context.strokeText(lineone,-textmeasure/2,0);
+			textmeasure=context.measureText(linetwo).width;
+			context.fillText(linetwo,-textmeasure/2,60);
+			context.strokeText(linetwo,-textmeasure/2,60);
+			context.restore();
+		}
+		function drawscaletext(value){
+			var text=parseFloat(value).toFixed(2);
+			var percent=parseFloat(value-min)/parseFloat(max-min);
+			scaleoutput.innerText=text;
+			percent=percent<0.35?0.35:percent;
+			scaleoutput.style.fontSize=percent*max/1.5+'em';
+		}
+		scaleslider.onchange=function(e){
+			scale=e.target.value;
+			if(scale<min)
+				scale=min;
+			else if(scale>max)
+				scale=max;
+			drawscaled();
+		}
+		function drawscaled(){
+			var w=canvas.width,
+				h=canvas.height,
+				sw=w*scale,
+				sh=h*scale;
+			context.drawImage(offscreencanvas,0,0,offscreencanvas.width,offscreencanvas.height,-sw/2+w/2,-sh/2+h/2,sw,sh);
+		}
+	</script>
+</body>
+</html>

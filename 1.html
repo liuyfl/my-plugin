@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .languageSwitch span:before {
+                content: "•";
+                padding: 0 4px;
+                font-weight: normal;
+            }
+            .languageSwitch span:first-child:before {
+                content: "";
+                padding: 0;
+            }
+            .languageSwitch .current {
+                font-weight: bold;
+            }
+    </style>
+</head>
+<body>
+    <div class="languageSwitch">
+<span><a href="?lang=de">Deutsch</a></span><span
+class="current">English</span><span><a href="?lang=fr">français</a></span>
+</div>
+</body>
+</html>

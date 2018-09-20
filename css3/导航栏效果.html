@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航栏效果</title>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<style type="text/css">
+	/*1
+		.dlg-content-top-title{
+			display: inline-block;
+			color: #4587c0;
+			width:auto;
+			padding:0 20px;
+			position: relative;
+			height: 30px;
+			line-height: 30px;
+		}
+		.dlg-content-top-title:before{
+			position: absolute;
+			content:'';
+			height: 30px;
+			width:2px;
+			background: #c1c1c1;
+			top:0px;
+			left:0px;
+			margin-left: 0px;
+			transition:all 0.2s;
+			-webkit-transition:all 0.2s;
+			-moz-transition:all 0.2s;
+			-o-transition:all 0.2s;
+			-ms-transition:all 0.2s;
+			transform-origin:100% 0;
+			-webkit-transform-origin:0 0;
+			-moz-transform-origin:0 0;
+			-o-transform-origin:0 0;
+			-ms-transform-origin:0 0;
+		}
+		.dlg-content-top-title:after{
+			position: absolute;
+			content:'';
+			height: 30px;
+			width:2px;
+			background: #c1c1c1;
+			right: 0px;
+			bottom:0px;
+			margin-right: 0px;
+			transition:all 0.2s;
+			-webkit-transition:all 0.2s;
+			-moz-transition:all 0.2s;
+			-o-transition:all 0.2s;
+			-ms-transition:all 0.2s;
+			-webkit-transform-origin:100% 0;
+			-moz-transform-origin:100% 0;
+			-o-transform-origin:100% 0;
+			-ms-transform-origin:100% 0;
+		}
+		.dlg-content-top-title:hover{
+			color: #fff100;
+		}
+		.dlg-content-top-title:hover:before{
+			transform:rotateZ(-90deg);
+			-webkit-transform:rotateZ(-90deg);
+			-moz-transform:rotateZ(-90deg);
+			-o-transform:rotateZ(-90deg);
+			-ms-transform:rotateZ(-90deg);
+			left:50%;
+			margin-left: -15px;
+		}
+		.dlg-content-top-title:hover:after{
+			transform:translateY(100%) rotateZ(90deg);
+			-webkit-transform:translateY(100%) rotateZ(90deg);
+			-moz-transform:translateY(100%) rotateZ(90deg);
+			-o-transform:translateY(100%) rotateZ(90deg);
+			-ms-transform:translateY(100%) rotateZ(90deg);
+			right:50%;
+			margin-right: -15px;
+		}
+	end1*/
+	body{
+		/*background: #435a6b;*/
+		padding:40px 0px;
+	}
+/*	.dlg-content-top{
+	position: relative;
+	margin:0px auto 20px;
+	padding:10px 0 0 15px;
+	text-align: left;
+}
+.dlg-content-top-title,.dlg-content-top-title-focus{
+	display: inline-block;
+	color: white;
+	width:auto;
+	padding:0 20px;
+	position: relative;
+	height: 30px;
+	line-height: 27px;
+	border-top:3px solid #2f4351;
+	background: #4587c0;
+	margin-right: 20px;
+	cursor: pointer;
+	transition:transform 0.5s;
+	-webkit-transition:-webkit-transform 0.5s;
+	-moz-transition:-moz-transform 0.5s;
+	-o-transition:-o-transform 0.5s;
+	-ms-transition:-ms-transform 0.5s;
+	transform-origin:0 0;
+	-webkit-transform-origin:0 0;
+	-moz-transform-origin:0 0;
+	-o-transform-origin:0 0;
+	-ms-transform-origin:0 0;
+	transform-style:preserve-3d;
+	-webkit-transform-style:preserve-3d;
+	-moz-transform-style:preserve-3d;
+	-o-transform-style:preserve-3d;
+	-ms-transform-style:preserve-3d;
+}
+.dlg-content-top-title:before,.dlg-content-top-title-focus:before{
+	position: absolute;
+	content:attr(data-content);
+	top:0;
+	left: 0;
+	background: white;
+	color: #4587c0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transform-origin:0 0;
+	-webkit-transform-origin:0 0;
+	-moz-transform-origin:0 0;
+	-o-transform-origin:0 0;
+	-ms-transform-origin:0 0;
+	transform:rotateX(270deg);
+	-webkit-transform:rotateX(270deg);
+	-moz-transform:rotateX(270deg);
+	-o-transform:rotateX(270deg);
+	-ms-transform:rotateX(270deg);
+	transition:transform 0.5s;
+	-webkit-transition:-webkit-transform 0.5s;
+	-moz-transition:-moz-transform 0.5s;
+	-o-transition:-o-transform 0.5s;
+	-ms-transition:-ms-transform 0.5s;
+}
+.dlg-content-top-title span{
+	font-size: 14px;
+	line-height: 27px;
+	color: #c1c1c1;
+}
+.dlg-content-top-title:hover{
+	border-top:3px solid white;
+}
+.dlg-content-top-title:hover span,.dlg-content-top-title-focus span{
+	color: #4587c0;
+}
+.dlg-content-top-title:hover:before,.dlg-content-top-title-focus:before{
+	background: white;
+	color: #4587c0;
+	transform:rotateX(0deg);
+	-webkit-transform:rotateX(0deg);
+	-moz-transform:rotateX(0deg);
+	-ms-transform:rotateX(0deg);
+	-o-transform:rotateX(0deg);
+	line-height: 27px;
+}*/
+
+
+/*.dlg-content-top{
+	position: relative;
+	margin:0px auto 20px;
+	padding:10px 0 0 15px;
+	text-align: left;
+}
+.dlg-content-top-title,.dlg-content-top-title-focus{
+	display: inline-block;
+	color: white;
+	width:auto;
+	padding:0 0px;
+	position: relative;
+	line-height: 30px;
+	margin-right: 15px;
+	cursor: pointer;
+	background: #bdc2c9;
+	margin:0 0 0 3em;
+	padding:20px 0;
+	width:100px;
+	text-align: center;
+}
+.dlg-content-top-title span{
+	font-size: 16px;
+	color: white;
+	display: block;
+}
+.dlg-content-top-title:hover span,.dlg-content-top-title-focus span{
+	color: white;
+}
+.dlg-content-top-title svg{
+	position: absolute;
+	width:3em;
+	height: 100%;
+	fill:#bdc2c9;
+	left:100%;
+	top:0px;
+}
+.dlg-content-top-title svg:nth-child(2),.dlg-content-top-title:last-child svg{
+	right: 100%;
+	left:auto;
+	transform:rotateZ(180deg) rotateX(180deg);
+	-webkit-transform:rotateZ(180deg) rotateX(180deg);
+	-moz-transform:rotateZ(180deg) rotateX(180deg);
+	-o-transform:rotateZ(180deg) rotateX(180deg);
+	-ms-transform:rotateZ(180deg) rotateX(180deg);
+}
+.dlg-content-top-title:first-child{
+	padding-left: 1.5em;
+	border-top-left-radius: 30px;
+}
+.dlg-content-top-title:last-child{
+	padding-right: 1.5em;
+	border-top-right-radius: 30px;
+}
+.dlg-content-bottom{
+	display:block;
+	width: 100%;
+	padding: 0px;
+}*/
+
+
+.dlg-content-top{
+	position: relative;
+	margin:0px auto 20px;
+	padding:10px 0 0 15px;
+	text-align: left;
+}
+.dlg-content-top-title,.dlg-content-top-title-focus{
+	display: inline-block;
+	color: white;
+	width:auto;
+	padding:0 0px;
+	position: relative;
+	line-height: 30px;
+	margin-right: 5px;
+	cursor: pointer;
+	padding:3px 0;
+	text-align: center;
+	background: #199ee1;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	color: white;
+}
+.dlg-content-top-title span{
+	font-size: 16px;
+	display: block;
+	padding:0 5px;
+}
+.dlg-content-top-title:hover{
+	background: #50b4e7;
+}
+.dlg-content-top-title-focus,.dlg-content-top-title-focus:hover{
+	border:1px solid #f3f3f3;
+	border-bottom:0px;
+	background: white;
+}
+.dlg-content-top-title-focus span,.dlg-content-top-title-focus:hover span{
+	color: #199ee1;
+}
+.dlg-content-bottom{
+	display:block;
+	width: 100%;
+	padding: 0px;
+}
+	</style>
+</head>
+<body>
+	<!-- <div class="dlg-content-top-title dlg-content-top-title-focus" data-content="Training Services"><span>Training Services</span></div> -->
+<!-- <div class="dlg-content-top">
+	<div class="dlg-content-top-title dlg-content-top-title-focus">
+		<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
+		<span>Introduction</span>
+	</div>
+	<div class="dlg-content-top-title dlg-content-top-title-focus">
+		<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
+		<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
+		<span>Webinars</span>
+	</div>
+	<div class="dlg-content-top-title dlg-content-top-title-focus">
+		<svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
+		<span>Trainings</span>	
+	</div>
+</div>
+	<svg style="poaition:absolute;height:0;width:0;">
+			<defs>
+				<path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z"/>
+			</defs>
+		</svg> -->
+		<div class="dlg-content-top">
+	<div class="dlg-content-top-title dlg-content-top-title-focus">
+		<span>Introduction</span>
+	</div>
+	<div class="dlg-content-top-title">
+		<span>Webinars</span>
+	</div>
+	<div class="dlg-content-top-title">
+		<span>Trainings</span>	
+	</div>
+</div>
+</body>
+</html>

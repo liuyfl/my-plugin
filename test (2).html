@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" /> 
+<title>css3 3d rotate</title> 
+<style type="text/css"> 
+body,div,ul,li{ 
+padding:0; 
+margin:0; 
+} 
+.container ul li { 
+height: 50px; 
+width: 180px; 
+display: inline; 
+-webkit-perspective: 2000px; 
+-moz-perspective: 2000px; 
+} 
+.out_box{ 
+position: relative; 
+height: 50px; 
+width: 180px; 
+-webkit-transform-style: preserve-3d; 
+-moz-transform-style: preserve-3d; 
+-ms-transform-style: preserve-3d; 
+transform-style: preserve-3d; 
+-webkit-transition: 0.1s; 
+-moz-transition: 0.1s; 
+-o-transition: 0.1s; 
+-ms-transition: 0.1s; 
+transition: 0.1s; 
+-webkit-backface-visibility: hidden; 
+-moz-backface-visibility: hidden; 
+backface-visibility: hidden; 
+} 
+.out_box div{ 
+display: block; 
+height: 50px; 
+width: 180px; 
+position: absolute; 
+left: 0; 
+top: 0; 
+background: #060; 
+-webkit-backface-visibility: hidden; 
+-moz-backface-visibility: hidden; 
+backface-visibility: hidden; 
+color:#FFF; 
+font-size:16px; 
+} 
+.content-jd{
+   width:180px;
+   height: 50px;
+   border:1px solid #10adf2;
+   /*border-radius: 10px;*/
+   margin:0 50px 30px 60px;
+   padding:0 10px;
+   color:#059dd9;
+   font-size: 30px;
+   display: inline-block;
+   cursor: pointer;
+}
+.content-jd-hover{
+   width:180px;
+   height: 50px;
+   background:  #10adf2;
+   /*border-radius: 10px;*/
+   margin:0 50px 30px 60px;
+   padding:0 10px;
+   color:white;
+   font-size: 30px;
+   display: inline-block;
+   cursor: pointer;
+}
+.content-jd span,.content-jd-hover span{
+   height: 50px;
+   display: inline-block;
+   vertical-align: top;
+   line-height: 50px;
+   font-size: 30px;
+   margin-left: 5px;
+}
+.out_box .content-jd{ 
+z-index: 2; 
+} 
+.out_box .content-jd-hover{ 
+z-index: 1; 
+-webkit-transform: rotateX(180deg); 
+-moz-transform: rotateX(180deg); 
+transform: rotateX(180deg); 
+} 
+.container ul li:hover .out_box{ 
+-webkit-transform: rotateX(180deg); 
+-moz-transform: rotateX(180deg); 
+transform: rotateX(180deg); 
+} 
+.container ul li:hover .content-jd-hover{ 
+z-index: 3; 
+} 
+
+</style> 
+</head> 
+<body> 
+<!-- <div class="container"> 
+<ul> 
+   <li> 
+      <div class="out_box"> 
+         <div class="content-jd">
+            <img src="images/jd.png">
+            <span>购买</span>
+         </div> -->
+         <!-- <div class="front_box">front</div>  -->
+         <!-- <div class="back_box">back</div>  -->
+         <div class="content-jd-hover">
+            <img src="images/jd-hover.png">
+            <span>购买</span>
+         </div>
+  <!--     </div> 
+   </li> 
+</ul> 
+</div>  -->
+</body> 
+</html> 
